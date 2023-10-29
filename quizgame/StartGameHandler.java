@@ -9,7 +9,7 @@ import java.io.OutputStream;
 public class StartGameHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        String response = "Welcome! The game has started. Use a GET request to /api/game/question to get the first question.";
+        String response = "Welcome! The game has started. Use a GET request /api/game/question to get the first question.";
         sendResponse(exchange, response);
     }
 
