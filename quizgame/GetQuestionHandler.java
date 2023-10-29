@@ -20,14 +20,18 @@ public class GetQuestionHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         if (currentQuestionIndex < quizQuestions.size()) {
             Question question = quizQuestions.get(currentQuestionIndex);
-            sendResponse(exchange, question.getQuestion());
+            String response = question.getQuestion();
+            sendResponse(exchange, response);
+
             currentQuestionIndex++;
         } else {
-            sendResponse(exchange, "No more questions available.");
+            String noMoreQuestionsResponse = "No more questions available.";
+            sendResponse(exchange, noMoreQuestionsResponse);
         }
     }
 
     private void sendResponse(HttpExchange exchange, String response) throws IOException {
+        exchange.sendResponseHeaders(200, response.length());
         OutputStream os = exchange.getResponseBody();
         os.write(response.getBytes());
         os.close();

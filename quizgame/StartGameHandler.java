@@ -2,13 +2,14 @@ package quizgame;
 
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
+
 import java.io.IOException;
 import java.io.OutputStream;
 
 public class StartGameHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        String response = "Game started. Use GET request to /api/game/question to get the first question.";
+        String response = "Welcome! The game has started. Use a GET request to /api/game/question to get the first question.";
         sendResponse(exchange, response);
     }
 
