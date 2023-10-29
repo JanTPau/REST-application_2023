@@ -11,6 +11,9 @@ public class QuizGameApplication {
     public static void main(String[] args) throws IOException {
         int port = 8080;
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+
+        List<Question> quizQuestions = initializeQuestions();
+
         server.createContext("/api/game/question", new GetQuestionHandler(quizQuestions));
         server.createContext("/api/game/start", new StartGameHandler());
         server.createContext("/api/game/answer", new SubmitAnswerHandler());
