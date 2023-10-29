@@ -7,18 +7,21 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
-class GetQuestionHandler implements HttpHandler {
+public class GetQuestionHandler implements HttpHandler {
     private List<Question> quizQuestions;
+    private int currentQuestionIndex;
 
     public GetQuestionHandler(List<Question> quizQuestions) {
         this.quizQuestions = quizQuestions;
+        this.currentQuestionIndex = 0;
     }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        if (!quizQuestions.isEmpty()) {
-            Question question = quizQuestions.get(0);
+        if (currentQuestionIndex < quizQuestions.size()) {
+            Question question = quizQuestions.get(currentQuestionIndex);
             sendResponse(exchange, question.getQuestion());
+            currentQuestionIndex++;
         } else {
             sendResponse(exchange, "No more questions available.");
         }

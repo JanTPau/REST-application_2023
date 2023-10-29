@@ -5,10 +5,10 @@ import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class StartGameHandler implements HttpHandler {
+public class InfoHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        String response = "Game started. Use GET request to /api/game/question to get the first question.";
+        String response = "Welcome to the Quiz Game API. Use endpoints /api/game/start to begin, /api/game/question to get a question, and /api/game/answer to submit an answer.";
         sendResponse(exchange, response);
     }
 

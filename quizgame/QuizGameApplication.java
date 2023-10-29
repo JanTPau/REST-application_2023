@@ -14,9 +14,10 @@ public class QuizGameApplication {
 
         List<Question> quizQuestions = initializeQuestions();
 
-        server.createContext("/api/game/question", new GetQuestionHandler(quizQuestions));
-        server.createContext("/api/game/start", new StartGameHandler());
-        server.createContext("/api/game/answer", new SubmitAnswerHandler());
+        server.createContext("/api/game/info", new InfoHandler()); //Welcomes the player, gives directions on how to play the game.
+        server.createContext("/api/game/start", new StartGameHandler()); //Starts the game and directs the player on how to get the first question
+        server.createContext("/api/game/question", new GetQuestionHandler(quizQuestions)); //Asks the player questions until the game runs out of questions.
+        server.createContext("/api/game/answer", new SubmitAnswerHandler()); //Submits answers and instructs the player to ask for another question
         server.start();
         System.out.println("Server is running on port " + port);
     }
